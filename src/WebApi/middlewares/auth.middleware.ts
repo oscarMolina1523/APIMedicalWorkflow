@@ -12,9 +12,12 @@ export function validateToken(req: Request, res: Response, next: NextFunction) {
   // Si no está en headers, revisa en la query
   //req.query.token <--ahi en token puedes cambiar la palabra por la que 
   //deseas que sea ya sea accessToken u otra por ahora debes poner token y el jsontoken
-  if (!accessToken && req.query.token) {
-    accessToken = req.query.token as string;
-  }
+
+  //este codigo permite recibir el token por el body, lo cual es 
+  //malo para la seguridad
+  // if (!accessToken && req.query.token) {
+  //   accessToken = req.query.token as string;
+  // }
   if (!accessToken) {
     res.status(401).json({ message: "Access denied. No token provided." });
     return;
