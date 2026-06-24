@@ -12,7 +12,14 @@ export default class TokenRepository implements ITokenRepository {
     if (!secret)
       throw new Error("JWT SECRET is not defined in environment variables");
 
-    return jwt.sign(user, secret, { expiresIn: "1d" });
+    // return jwt.sign(user, secret, { expiresIn: "1d" });
+    
+    //reducir tiempo de vida del token y agregar validaciones
+    return jwt.sign(user, secret, {
+      expiresIn: "1h",
+      issuer: "hospital-api",
+      audience: "hospital-client",
+    });
   }
 
   decodeToken(token: string): UserResponse {
