@@ -25,8 +25,20 @@ const app = express();
 app.use(helmet());
 const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+//limitamos el tamaño del JSON para aceptar y evitar
+//un ataque por archivo enormes, limitandolo a 1MB
+app.use(
+  express.urlencoded({
+    extended: false,
+    limit: "1mb",
+  }),
+);
+
+app.use(
+  express.json({
+    limit: "1mb",
+  }),
+);
 app.use(cors());
 
 //AUTO-REGISTER-OPENAPI
@@ -69,10 +81,10 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`Servidor Express corriendo en http://localhost:${PORT}`);
       console.log(
-        `Documentación de Swagger en http://localhost:${PORT}/api-docs`
+        `Documentación de Swagger en http://localhost:${PORT}/api-docs`,
       );
     });
-  } catch(error) {
+  } catch (error) {
     console.error("Error al iniciar el servidor:", error);
     process.exit(1);
   }
