@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { UserResponse } from "../../Aplication.Endpoint/dtos/response/user.response";
 dotenv.config();
 
 
