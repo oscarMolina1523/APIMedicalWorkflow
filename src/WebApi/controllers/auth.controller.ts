@@ -28,7 +28,8 @@ export default class AuthController {
         token: result.token,
       });
     } catch (error) {
-      res.status(500).json({ message: "Error al logear al usuario", error });
+      console.error(error);
+      res.status(500).json({ message: "Error al logear al usuario" });
     }
   };
 
@@ -49,7 +50,8 @@ export default class AuthController {
         user: result.data || null,
       });
     } catch (error) {
-      res.status(500).json({ message: "Error al registrar usuario", error });
+      console.error(error);
+      res.status(500).json({ message: "Error al registrar usuario" });
     }
   };
 
