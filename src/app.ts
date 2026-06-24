@@ -18,8 +18,11 @@ import kpiRoutes from "./WebApi/routes/kpi.routes";
 // import { initializeDatabase } from "./Infrastructure.Endpoint/database/turso_db";
 import { OpenApiSpecification } from "./WebApi/documentation/openapi";
 import { validateToken } from "./WebApi/middlewares/auth.middleware";
+import helmet from "helmet";
 
 const app = express();
+//agregamos proteccion HTTP
+app.use(helmet());
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: false }));
