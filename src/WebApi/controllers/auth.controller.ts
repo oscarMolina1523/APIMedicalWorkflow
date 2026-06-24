@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IAuthService } from "../../Aplication.Endpoint/interfaces/authService.interface";
 import { Request, Response } from "express";
 import { UserRequest } from "../../Aplication.Endpoint/dtos/request/user.request";
+import { loginSchema, registerSchema } from "../validators/auth.validator";
 
 @injectable()
 export default class AuthController {
@@ -14,6 +15,17 @@ export default class AuthController {
   login = async (req: Request, res: Response): Promise<void> => {
     try {
       const data: UserRequest = req.body;
+
+      //validacion de schema
+      const validation = loginSchema.safeParse(data);
+
+      if (!validation.success) {
+        res.status(400).json({
+          message: "Datos inválidos",
+        });
+
+        return;
+      }
 
       if (!data.email || !data.password) {
         res.status(400).json({ message: "Todos los campos son obligatorios" });
@@ -36,6 +48,17 @@ export default class AuthController {
   register = async (req: Request, res: Response): Promise<void> => {
     try {
       const data: UserRequest = req.body;
+
+      //validacion de registro
+      const validation = registerSchema.safeParse(data);
+
+      if (!validation.success) {
+        res.status(400).json({
+          message: "Datos inválidos",
+        });
+
+        return;
+      }
 
       if (!data.username || !data.email || !data.password) {
         res.status(400).json({ message: "Todos los campos son obligatorios" });
