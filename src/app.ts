@@ -19,8 +19,13 @@ import kpiRoutes from "./WebApi/routes/kpi.routes";
 import { OpenApiSpecification } from "./WebApi/documentation/openapi";
 import { validateToken } from "./WebApi/middlewares/auth.middleware";
 import helmet from "helmet";
+import { apiLimiter } from "./WebApi/middlewares/rateLimit.middleware";
 
 const app = express();
+
+//usamos el rate limit
+app.use(apiLimiter);
+
 //agregamos proteccion HTTP
 app.use(helmet());
 const PORT = process.env.PORT || 3000;
