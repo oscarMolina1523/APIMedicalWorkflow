@@ -384,6 +384,110 @@ Beneficios:
 
 ---
 
+## Comparativo: Entorno de Desarrollo vs Entorno Productivo
+
+La severidad de una vulnerabilidad depende directamente del entorno donde se encuentra desplegada la aplicación. Durante la fase de desarrollo, el sistema opera bajo condiciones controladas y con acceso restringido, mientras que en producción se encuentra expuesto a usuarios reales y almacena información sensible.
+
+### Entorno de Desarrollo
+
+Características:
+
+* Acceso limitado al equipo de desarrollo.
+* Ambiente controlado y aislado.
+* Menor volumen de usuarios concurrentes.
+* Información utilizada principalmente para pruebas.
+* Menor exposición a amenazas externas.
+
+Impacto esperado ante una vulnerabilidad:
+
+**Moderado**
+
+Aunque una vulnerabilidad puede afectar el funcionamiento del sistema, el alcance suele estar limitado al entorno interno y no compromete directamente información de usuarios finales.
+
+---
+
+### Entorno Productivo
+
+Características:
+
+* Exposición a redes públicas o corporativas.
+* Almacenamiento de información médica y administrativa.
+* Acceso concurrente de múltiples usuarios.
+* Dependencia operativa para procesos críticos del negocio.
+* Mayor superficie de ataque.
+
+Impacto esperado ante una vulnerabilidad:
+
+**Crítico**
+
+La explotación de una vulnerabilidad puede afectar la disponibilidad del servicio, comprometer información sensible o generar incumplimientos regulatorios.
+
+---
+
+### Comparativa de Impacto
+
+| Vulnerabilidad                      | Desarrollo | Producción |
+| ----------------------------------- | ---------- | ---------- |
+| Token JWT comprometido              | Medio      | Crítico    |
+| Exposición de datos                 | Medio      | Crítico    |
+| Denegación de servicio (DoS)        | Medio      | Crítico    |
+| Error de configuración              | Bajo       | Alto       |
+| Fuga de información médica          | Alto       | Crítico    |
+| Acceso no autorizado                | Medio      | Crítico    |
+| Exposición de documentación técnica | Bajo       | Alto       |
+| Manipulación de datos               | Medio      | Crítico    |
+
+La comparación evidencia que vulnerabilidades consideradas aceptables o de impacto moderado durante el desarrollo pueden convertirse en incidentes críticos una vez que el sistema es desplegado en producción.
+
+---
+
+# Impacto Respecto a la Legislación
+
+ApiMedical administra información relacionada con:
+
+* Usuarios del sistema.
+* Pacientes.
+* Citas médicas.
+* Medicamentos.
+* Inventarios.
+* Facturación y registros administrativos.
+
+Debido a la naturaleza de estos datos, gran parte de la información procesada puede considerarse sensible o confidencial.
+
+## Riesgos Legales Asociados
+
+La explotación de vulnerabilidades podría provocar:
+
+* Acceso no autorizado a información médica.
+* Divulgación de datos personales.
+* Alteración de registros clínicos.
+* Pérdida de trazabilidad de acciones realizadas por los usuarios.
+* Interrupción de servicios críticos.
+
+## Contribución de las Medidas Implementadas
+
+Las mejoras de seguridad incorporadas permiten reducir estos riesgos mediante:
+
+* Protección de mecanismos de autenticación.
+* Validación y control de datos de entrada.
+* Limitación de solicitudes maliciosas.
+* Reducción de exposición de información sensible.
+* Fortalecimiento de la disponibilidad del servicio.
+* Mejora de la trazabilidad y control de acceso.
+
+## Alineación con Buenas Prácticas Regulatorias
+
+Si bien el proyecto fue desarrollado con fines académicos y técnicos, las medidas implementadas siguen principios presentes en marcos regulatorios y estándares internacionales ampliamente utilizados:
+
+* GDPR (General Data Protection Regulation).
+* HIPAA (Health Insurance Portability and Accountability Act).
+* Principios de Protección de Datos Personales.
+* OWASP Top 10.
+* OWASP API Security Top 10.
+* NIST Cybersecurity Framework.
+
+Estas prácticas contribuyen a fortalecer la confidencialidad, integridad y disponibilidad de la información, reduciendo la probabilidad de incidentes de seguridad y facilitando una futura adaptación a requisitos regulatorios más estrictos.
+
 # Conclusión
 
 Tras la aplicación de controles de seguridad basados en STRIDE, ApiMedical incrementó significativamente su nivel de protección frente a amenazas comunes en aplicaciones web modernas.
